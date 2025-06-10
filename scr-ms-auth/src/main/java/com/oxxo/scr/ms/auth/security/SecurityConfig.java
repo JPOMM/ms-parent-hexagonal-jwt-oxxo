@@ -103,7 +103,7 @@ public class SecurityConfig {
         .redirectUri(environment.getProperty("LB_MAINTENANCE_URI", "http://127.0.0.1:9090")
             + "/login/oauth2/code/maintenance-client")
         .redirectUri(environment.getProperty("LB_MAINTENANCE_URI", "http://127.0.0.1:9090") + "/api/users/authorized")
-        .tokenSettings(TokenSettings.builder().accessTokenTimeToLive(Duration.ofMinutes(5)).build())
+        .tokenSettings(TokenSettings.builder().accessTokenTimeToLive(Duration.ofMinutes(2)).build())
         .scope(OidcScopes.OPENID)
         .scope(OidcScopes.PROFILE)
         .scope("read")

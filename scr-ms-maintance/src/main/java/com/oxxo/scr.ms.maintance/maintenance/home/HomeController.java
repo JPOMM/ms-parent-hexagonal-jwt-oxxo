@@ -8,6 +8,6 @@ public class HomeController {
 
   @RequestMapping("/")
   public String home() {
-    return "The microservice APPMIC-E-CommercePlugins-maintenance has been activated";
+    return "The microservice scr-ms-maintenance has been activated";
   }
 }

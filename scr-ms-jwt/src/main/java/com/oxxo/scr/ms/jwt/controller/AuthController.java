@@ -62,7 +62,7 @@ public class AuthController {
       throw new JwtException(JwtErrorMessage.MAL_FORMATTED);
     }
     final UserResponseDto user = userService.validateUser(loginRequest.username());
-    if (ObjectUtils.isEmpty(user) || Boolean.TRUE.equals(!user.getIsActive()) || !passwordEncoder().matches(loginRequest.password(),
+    if (ObjectUtils.isEmpty(user) || !user.getIsActive() || !passwordEncoder().matches(loginRequest.password(),
         user.getPassword())) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(GenericUtils.buildGenericResponseWarning(JwtConstants.INVALID_USER, null));
     }
@@ -77,7 +77,7 @@ public class AuthController {
         .subject(user.getUsername())
         .claims(claims)
         .issuedAt(new Date())
-        .expiration(new Date(System.currentTimeMillis() + 3600000)) // 1 hora
+        .expiration(new Date(System.currentTimeMillis() + 300000 )) // 5 minutos  3600000 - 1 hora
         .signWith(getSecretKey())
         .compact();
     httpServletResponse.addHeader(TokenJwtConfig.HEADER_AUTHORIZATION, token);
