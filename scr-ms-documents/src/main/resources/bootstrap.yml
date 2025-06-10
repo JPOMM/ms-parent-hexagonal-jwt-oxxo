@@ -1,0 +1,56 @@
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: assi-qualification-cloud
+  profiles:
+    active: ${PROFILE:dev}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    consul:
+      config:
+        enabled: false
+    config:
+      uri: ${CONFIG_SERVER_URI:}
+      fail-fast: ${CONFIG_SERVER_FAIL_FAST:true}
+      enabled: ${CONFIG_SERVER_ENABLED:true}
+      label: ${LABEL:develop}
+
+azure:
+  keyvault:
+    enabled: ${KEYVAULT_ENABLED:true}
+    uri: ${KEYVAULT_URI:}
+    client-id: ${KEYVAULT_CLIENT_ID:}
+    client-key: ${KEYVAULT_CLIENT_KEY:}
+    token-acquire-timeout-seconds: 260
+    refresh-interval: 86400000
+    secret:
+      keys: "assi-qualification-api-omdm-cloud,\
+        common-assi-datasource-url,\
+        common-assi-datasource-username,\
+        common-assi-datasource-password,\
+        common-azure-topic-connection,\
+        assi-audit-encryption-password,\
+        assi-audit-encryption-salt,\
+        assi-common-esb-api-http-headers-token-value,\
+        assi-common-esb-api-http-headers-basic-user,\
+        assi-common-esb-api-http-headers-basic-password,\
+        common-azure-topic-connection,\
+        common-qradar-sasKey,\
+        common-qradar-eventhub,\
+        assi-common-esb-api-base-url,\
+        assi-qualification-api-omdm,\
+        common-redis-url,\
+        common-redis-password,\
+        assi-common-cosmos-database,\
+        assi-common-cosmos-connection,\
+        assi-qualification-des-encryption-password,\
+        assi-qualification-des-encryption-salt,\
+        assi-apic-hub-offer-client-id,\
+        assi-apic-hub-offer-client-secret"
+
+logging:
+  logstash:
+    url: ${LOG_STASH_URL:localhost:8888}
+    enabled: ${LOG_STASH_ENABLED:false}
